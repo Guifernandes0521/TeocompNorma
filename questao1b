@@ -34,6 +34,8 @@ operation load(A,B,C){
   2: do soma(A,B,C) goto 0
 }
 
+//--- Abaixo meus codigos, acima eh tudo do rodrigo(<3) ---//
+
 operation mult(A,B,C,D,E){ //A := A*B, nao destrutivo
   1: do load(C,A,D) goto 2
   2: do load(E,B,D) goto 3
