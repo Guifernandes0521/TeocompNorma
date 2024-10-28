@@ -36,7 +36,16 @@ operation load(A,B,C){
 
 //--- Abaixo meus codigos, acima eh tudo do rodrigo(<3) ---//
 
-operation mult(A,B,C,D,E){ //A := A*B, nao destrutivo
+// A:=A-B
+operation subtrai(A,B,C,D){
+ 1: do load(C,B,D) goto 2
+ 2: if zero C then goto 0 else goto 3
+ 3: do dec C goto 4
+ 4: do dec A goto 2
+}
+
+//A := A*B, nao destrutivo
+operation mult(A,B,C,D,E){ 
   1: do load(C,A,D) goto 2
   2: do load(E,B,D) goto 3
   3: do dec E goto 4
@@ -51,6 +60,6 @@ main {
    1: do load(A,X,C) goto 2
    2: do mult(A,X,B,C,D) goto 3
    3: do mult(A,X,B,C,D) goto 4
-   4: do soma(A,X,C) goto 5
+   4: do subtrai(A,X,C,D) goto 5
    5: do load(Y,A) goto 0
 }
