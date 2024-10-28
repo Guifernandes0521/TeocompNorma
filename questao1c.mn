@@ -1,0 +1,74 @@
+// limpa variável
+operation clear(A){
+ 1: if zero A then goto 0 else goto 2
+ 2: do dec A goto 1
+}
+
+// A:=A+B (soma destrutiva)
+operation soma(A,B){
+  1: if zero B then goto 0 else goto 2
+  2: do dec B goto 3
+  3: do inc A goto 1
+}
+
+// A:=A+B (soma não-destrutiva)
+operation soma(A,B,C){
+  1: if zero B then goto 5 else goto 2
+  2: do dec B goto 3
+  3: do inc A goto 4
+  4: do inc C goto 1
+  5: if zero C then goto 0 else goto 6
+  6: do dec C goto 7
+  7: do inc B goto 5
+}
+
+// A:=B (atribuição destrutiva)
+operation load(A,B){
+  1: do clear(A) goto 2
+  2: do soma(A,B) goto 0
+}
+
+// A:=B usando C (atribuição não-destrutiva)
+operation load(A,B,C){
+  1: do clear(A) goto 2
+  2: do soma(A,B,C) goto 0
+}
+
+//--- Abaixo meus codigos, acima eh tudo do rodrigo(<3) ---//
+
+operation mult(A,B,C,D,E){ //A := A*B, nao destrutivo
+  1: do load(C,A,D) goto 2
+  2: do load(E,B,D) goto 3
+  3: do dec E goto 4
+  4: if zero E then goto 7 else goto 5
+  5: do dec E goto 6
+  6: do soma(A,C,D) goto 4
+  7: do clear(C) goto 0
+}
+// A:=A-B
+operation subtrai(A,B,C,D){
+ 1: do load(C,B,D) goto 2
+ 2: if zero C then goto 0 else goto 3
+ 3: do dec C goto 4
+ 4: do dec A goto 2
+
+}
+main{
+ // limpando as variaveis auxiliares
+  // A := aux
+ 1: do clear(A) goto 2 
+  // B:= resultado do somatorio
+ 2: do clear(B) goto 3
+  // C:= resultado da mult
+ 3: do clear(C) goto 4
+//
+ 4: do load(C,A,D) goto 5
+ 5: do mult(C,A,D,E,F) goto 6
+ 6: do subtrai(C,A,D,E) goto 7
+ 7: do soma(B,C,D) goto 8
+ 8: if zero X then goto 11 else goto 9
+ 9: do dec X goto 10
+ 10: do inc A goto 4
+ 11: do load(Y,B) goto 0
+}
+ 
