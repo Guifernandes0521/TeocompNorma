@@ -1,0 +1,23 @@
+operation clear (A) {
+    1: if zero A then goto 0 else goto 2
+    2: do dec A goto 1
+}
+
+// if par: return 3; else: return 1
+operation if_even_3_else_1 (X,Y,C) {
+    1: do clear (C) goto 2
+    // se x = 0 -> par
+    2: if zero X then goto 3 else goto 7
+    3: do add Y 3 goto 4
+    // restaurando X 
+    4: if zero C then goto 0 else goto 5
+    5: do dec C goto 6
+    6: do inc X goto 4
+    // se X = 1 -> impar
+    7: do dec X goto 8
+    8: do inc C goto 9
+    9: if zero X then goto 10 else goto 11
+   10: do add Y 1 goto 4
+   11: do dec X goto 12
+   12: do inc C goto 2
+}
