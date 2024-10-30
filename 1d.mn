@@ -52,3 +52,7 @@ operation two_to_the_X (X,Y,A,B,C,D,E) {
     7: do a_times_b (Y,B,C,D,E) goto 8
     8: do dec A goto 6
 }
+
+main {
+    1: do two_to_the_X (X,Y,A,B,C,D,E) goto 0
+}
